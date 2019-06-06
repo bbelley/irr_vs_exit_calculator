@@ -110,7 +110,7 @@ class IRRApp extends React.Component {
         return (
             <div align='center' style={{width: '100%'}} >
             { this.state.error && <Alert bsStyle="danger" >Please enter both fields before calculating. </Alert> }
-            <Form style={{width: '70%', maxWidth:'300px'}} horizontal id="irr-calc" onSubmit={this.handleSubmit} autoComplete="off" >
+            <Form style={{width: '70%', maxWidth:'500px'}} horizontal id="irr-calc" onSubmit={this.handleSubmit} autoComplete="off" >
                 <FormGroup>     
                     <Radio
                         name="radioGroup" 
@@ -174,11 +174,11 @@ class IRRApp extends React.Component {
                 </FormGroup>
             </Form>
             <br />
-                { (!this.state.error && this.state.calcIRR) ? (<Alert bsStyle="success" style={{width: '90%', maxWidth:'500px'}} >IRR =  <br /><strong> {numeral(this.state.calcIRR).format('0.00')}% </strong> </Alert> ) : 'Enter values above and click "Calculate"' }
+                { (!this.state.error && (this.state.calcIRR || (this.state.calcIRR===0))) ? (<Alert bsStyle="success" style={{width: '90%', maxWidth:'500px'}} >IRR =  <br /><strong> {numeral(this.state.calcIRR).format('0.00')}% </strong> </Alert> ) : 'Enter values above and click "Calculate"' }
                 { (!this.state.error && this.state.calcMult) ? (<Alert bsStyle="success" style={{width: '90%', maxWidth:'500px'}} >Exit/Return Multiple =  <br /><strong> {numeral(this.state.calcMult).format('0.00')} X </strong> </Alert> ) : '' }
             </div>
         );
     }
 }
 
-ReactDOM.render(<IRRApp />,document.getElementById('app'));
+ReactDOM.render(<IRRApp />,document.getElementById('IRRapp'));
